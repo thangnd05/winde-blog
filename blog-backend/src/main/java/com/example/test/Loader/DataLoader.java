@@ -3,19 +3,18 @@ package com.example.test.Loader;
 import com.example.test.models.Users;
 import com.example.test.respositories.UserRespo;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
-
 import java.time.LocalDate;
 import java.util.Optional;
+import org.springframework.security.crypto.password.PasswordEncoder; // Dùng PasswordEncoder thay vì BCryptPasswordEncoder
 
 @Component
 public class DataLoader implements CommandLineRunner {
 
     private final UserRespo usersRepository;
-    private final BCryptPasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder; // Đổi từ BCryptPasswordEncoder sang PasswordEncoder
 
-    public DataLoader(UserRespo usersRepository, BCryptPasswordEncoder passwordEncoder) {
+    public DataLoader(UserRespo usersRepository, PasswordEncoder passwordEncoder) {
         this.usersRepository = usersRepository;
         this.passwordEncoder = passwordEncoder;
     }
