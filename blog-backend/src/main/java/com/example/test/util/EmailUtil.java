@@ -20,7 +20,7 @@ public class EmailUtil {
         mimeMessageHelper.setSubject("Verify OTP");
         mimeMessageHelper.setText("""
             <div>
-              <a href="https://api.winde.site/verify-account?email=%s&otp=%s" target="_blank">click link to verify</a>
+              <a href="http://192.168.100.205:8080/verify-account?email=%s&otp=%s" target="_blank">click link to verify</a>
             </div>
             """.formatted(email, otp), true);
 
