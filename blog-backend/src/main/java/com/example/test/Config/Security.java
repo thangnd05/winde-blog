@@ -73,7 +73,7 @@ public class Security {
 
     private UrlBasedCorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        config.addAllowedOrigin("https://winde.site"); // Địa chỉ Frontend
+        config.addAllowedOrigin("http://192.168.100.205:3000"); // Địa chỉ Frontend
         config.addAllowedMethod("*"); // Cho phép tất cả các phương thức HTTP
         config.addAllowedHeader("*"); // Cho phép tất cả các header
         config.setAllowCredentials(true); // Cho phép gửi thông tin xác thực (cookies, token)

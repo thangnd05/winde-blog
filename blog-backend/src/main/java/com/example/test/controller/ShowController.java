@@ -17,7 +17,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RestController
-@CrossOrigin(origins = "https://winde.site") // Cho phép frontend truy cập
+@CrossOrigin(origins = "http://192.168.100.205:3000") // Cho phép frontend truy cập
 @RequestMapping("/api")
 @AllArgsConstructor
 public class ShowController {

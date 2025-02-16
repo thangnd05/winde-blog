@@ -29,7 +29,7 @@ function Register() {
         setLoading(true);
         setMessage('');
         try {
-            const response = await axios.post("https://api.winde.site/api/register", {
+            const response = await axios.post("http://192.168.100.205:8080/api/register", {
                 username,
                 password,
                 email,

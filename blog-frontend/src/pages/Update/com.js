@@ -19,7 +19,7 @@ function CommentUpdate(){
 
 
     useEffect(()=>{
-        axios.get(`https://api.winde.site/api/comment/${commentId}`)
+        axios.get(`http://192.168.100.205:8080/api/comment/${commentId}`)
         .then((response)=>{
             setComment(response.data)           
         })
@@ -39,7 +39,7 @@ function CommentUpdate(){
         }
         setIsSaving(true)
 
-        axios.put(`https://api.winde.site/api/comment/${commentId}`,comment)
+        axios.put(`http://192.168.100.205:8080/api/comment/${commentId}`,comment)
         .then((response)=>{
             alert("Cập nhật thành công");
             navigate("/"); // Quay về trang chủ

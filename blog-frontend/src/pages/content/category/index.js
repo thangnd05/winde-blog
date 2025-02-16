@@ -14,7 +14,7 @@ function Category() {
 
   useEffect(() => {
     axios
-      .get("https://api.winde.site/api/category")
+      .get("http://192.168.100.205:8080/api/category")
       .then((response) => {
         setCategories(response.data); 
       })

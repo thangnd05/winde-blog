@@ -30,7 +30,7 @@ function ForgotPassword() {
 
         // Gửi yêu cầu đặt lại mật khẩu
         const response = await axios.post(
-          "https://api.winde.site/api/auth/forgot-password",
+          "http://192.168.100.205:8080/api/auth/forgot-password",
           params,
           {
             headers: {
