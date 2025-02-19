@@ -56,18 +56,13 @@ function Register() {
         }
     };
 
-    const handleKeyDown = (event) => {
-        if (event.key === "Enter") {
-            handleRegister(event)
-        }
-    };
 
 
     
 
     return (
         <div className={cx("bodic")}>
-            <Form className={cx("wrap")} id="login-form" onSubmit={handleRegister} onKeyDown={handleKeyDown}>
+            <Form className={cx("wrap")} id="login-form" onSubmit={handleRegister}>
                 <h1>Đăng ký</h1>
                 <Form.Group className={cx("input-box")}>
                     <Form.Control

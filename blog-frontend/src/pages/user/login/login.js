@@ -21,7 +21,9 @@ function Login() {
     const navigate = useNavigate();
 
     
+
     const handleLogin = async (e) => {
+        event.preventDefault(); // Ngăn reload trang (nếu input nằm trong form)
         setIsLoading(true); // Bắt đầu trạng thái loading
         setMessage(""); // Xóa thông báo lỗi cũ (nếu có)
     
@@ -103,19 +105,13 @@ function Login() {
         }
     };
 
-    const handleKeyDown = (event) => {
-        if (event.key === "Enter") {
-            event.preventDefault(); // Ngăn reload trang (nếu input nằm trong form)
-            handleLogin(event)
-        }
-    };
     
     
-    
+
     
     return (
         <div className={cx("bodic")}>
-            <Form className={cx("wrap")} id="login-form" onSubmit={handleLogin} onKeyDown={handleKeyDown}>
+            <Form className={cx("wrap")} id="login-form" onSubmit={handleLogin} >
                 <h1>Đăng nhập</h1>
                 <Form.Group className={cx("input-box")}>
                     <Form.Control 
