@@ -23,7 +23,7 @@ function Login() {
     
 
     const handleLogin = async (e) => {
-        event.preventDefault(); // Ngăn reload trang (nếu input nằm trong form)
+        e.preventDefault(); // Ngăn reload trang (nếu input nằm trong form)
         setIsLoading(true); // Bắt đầu trạng thái loading
         setMessage(""); // Xóa thông báo lỗi cũ (nếu có)
     
