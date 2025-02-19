@@ -37,6 +37,14 @@ function CommentUpdate(){
             alert("Nội dung bình luận không được để trống.");
             return;
         }
+        if (userId !== comment.userId && userId !== 1) {
+            alert("Bạn hãy đăng nhập vào đúng tài khoản đã bình luận này ");
+            navigate(routes.home);
+            return;
+        }
+
+
+
         setIsSaving(true)
 
         axios.put(`http://192.168.100.205:8080/api/comment/${commentId}`,comment)

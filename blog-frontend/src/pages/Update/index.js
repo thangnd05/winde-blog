@@ -53,10 +53,14 @@ function Update() {
         alert("Nội dung không được để trống.");
         return;
     }
+    if (userId !== post.userId && userId !== 1) {
+      alert("Bạn hãy đăng nhập vào đúng tài khoản đã bình luận này ");
+      navigate(routes.home);
+      return;
+  }
 
       setIsSaving(true); // Bật trạng thái lưu dữ liệu
-    //   const formattedContent = post.content.replace(/\n/g, '<br />'); // Xử lý xuống dòng
-    //   const formDataWithContent = new FormData();
+    
 
       const formDataWithContent = { 
         ...post, 
