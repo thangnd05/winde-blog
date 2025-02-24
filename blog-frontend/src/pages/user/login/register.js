@@ -43,7 +43,7 @@ function Register() {
             setLoading(false);
             if (err.response) {
                 if (err.response.status === 409) {
-                    setMessage("Email đã tồn tại. Vui lòng chọn email khác.");
+                    setMessage("Email hoặc Username đã tồn tại.");
                 } else if (err.response.status === 400) {
                     setMessage("Yêu cầu nhập mật khẩu.");
                 } else {

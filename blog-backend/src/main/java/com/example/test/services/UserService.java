@@ -46,6 +46,9 @@ public class UserService {
         if (userRespo.findByEmail(user.getEmail()).isPresent()) {
             throw new IllegalArgumentException("Email already exists."); // Ném Exception để hủy giao dịch
         }
+        if (userRespo.findByUsername(user.getUsername()).isPresent()) {
+            throw new IllegalArgumentException("Username already exists."); // Ném Exception để hủy giao dịch
+        }
 
         //mã hóa password
         if (user.getRole() == null) {
