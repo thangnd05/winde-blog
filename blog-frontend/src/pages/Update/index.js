@@ -5,6 +5,9 @@ import { Container, Form, Button } from "react-bootstrap";
 import classNames from "classnames/bind";
 import styles from "../post/post.module.scss"; // Nếu có sử dụng CSS module
 import JoditEditor from 'jodit-react';
+import { fetchUserId } from '~/hook/service';
+import routes from '~/config';
+
 
 
 
@@ -15,6 +18,8 @@ function Update() {
     const navigate = useNavigate();
     const [post, setPost] = useState({ title: "", content: "" });
     const [isSaving, setIsSaving] = useState(false);
+    const [userId,setUserId]=useState("")
+
 
 
 
@@ -34,11 +39,15 @@ function Update() {
           .then((response) => {
             const postData=response.data
             setPost(postData);
+            fetchUserId(setUserId); // Gọi hàm và truyền `setUserId` 
+            console.log(postData.userId ,userId)   
+
+              
           })
           .catch(() => {
             alert("Không thể tải bài viết. Vui lòng thử lại.");
           });
-      }, [postId]);
+      }, [postId,userId]);
     
     const handleUpdate = (e) => {
       e.preventDefault(); // Ngăn chặn form submit mặc định
@@ -58,9 +67,11 @@ function Update() {
       navigate(routes.home);
       return;
   }
+  
 
       setIsSaving(true); // Bật trạng thái lưu dữ liệu
-    
+    //   const formattedContent = post.content.replace(/\n/g, '<br />'); // Xử lý xuống dòng
+    //   const formDataWithContent = new FormData();
 
       const formDataWithContent = { 
         ...post, 

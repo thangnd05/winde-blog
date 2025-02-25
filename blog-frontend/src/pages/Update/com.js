@@ -6,6 +6,8 @@ import classNames from "classnames/bind";
 import styles from "../post/post.module.scss"; // Nếu có sử dụng CSS module
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import { fetchUserId } from '~/hook/service';
+import routes from '~/config';
 
 const cx = classNames.bind(styles);
 
@@ -14,6 +16,7 @@ function CommentUpdate(){
     const navigate = useNavigate();
     const [comment, setComment] = useState({ content: "" });
     const [isSaving, setIsSaving] = useState(false);
+    const [userId,setUserId]=useState("")
 
     const quillRef = useRef();
 
@@ -21,13 +24,18 @@ function CommentUpdate(){
     useEffect(()=>{
         axios.get(`http://192.168.100.205:8080/api/comment/${commentId}`)
         .then((response)=>{
-            setComment(response.data)           
+            setComment(response.data)      
+            fetchUserId(setUserId); // Gọi hàm và truyền `setUserId` 
+
         })
         .catch(() => {
             alert("Không thể tải bài viết. Vui lòng thử lại.");
           });
-    },[commentId])
+    },[commentId,userId])
 
+
+
+   
 
     const handleUpdate=(e)=>{
         e.preventDefault(); // Ngăn chặn form submit mặc định
@@ -37,13 +45,14 @@ function CommentUpdate(){
             alert("Nội dung bình luận không được để trống.");
             return;
         }
+
         if (userId !== comment.userId && userId !== 1) {
             alert("Bạn hãy đăng nhập vào đúng tài khoản đã bình luận này ");
             navigate(routes.home);
             return;
         }
-
-
+        
+        
 
         setIsSaving(true)
 
