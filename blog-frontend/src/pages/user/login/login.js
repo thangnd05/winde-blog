@@ -21,15 +21,14 @@ function Login() {
     const navigate = useNavigate();
 
     
-
     const handleLogin = async (e) => {
-        e.preventDefault(); // Ngăn reload trang (nếu input nằm trong form)
+
         setIsLoading(true); // Bắt đầu trạng thái loading
         setMessage(""); // Xóa thông báo lỗi cũ (nếu có)
     
         try {
             // Gửi yêu cầu đăng nhập
-            const loginResponse = await axios.post("http://192.168.100.205:8080/api/login", {
+            const loginResponse = await axios.post("http://localhost:8080/api/login", {
                 username: username,
                 password: password,
             }, {
@@ -51,7 +50,7 @@ function Login() {
                     email: username, // Lưu email nếu đúng định dạng
                 };
 
-                const roleResponse = await axios.get(`http://192.168.100.205:8080/api/role/${emailRes.username}`);
+                const roleResponse = await axios.get(`http://localhost:8080/api/role/${emailRes.username}`);
                 const userRole = roleResponse.data;
                 // Điều hướng theo role
             if (userRole === "ADMIN") {
@@ -66,11 +65,11 @@ function Login() {
                 
             } else {
                 // Nếu không phải email, lấy thêm thông tin email từ backend
-                const emailResponse = await axios.get(`http://192.168.100.205:8080/api/username/email?username=${username}`);
+                const emailResponse = await axios.get(`http://localhost:8080/api/username/email?username=${username}`);
                 const email = emailResponse.data;
     
                 // Lấy vai trò (role)
-                const roleResponse = await axios.get(`http://192.168.100.205:8080/api/role/${username}`);
+                const roleResponse = await axios.get(`http://localhost:8080/api/role/${username}`);
                 const userRole = roleResponse.data;
     
                 // Tạo đối tượng user đầy đủ
@@ -105,13 +104,19 @@ function Login() {
         }
     };
 
+    const handleKeyDown = (event) => {
+        if (event.key === "Enter") {
+            event.preventDefault(); // Ngăn reload trang (nếu input nằm trong form)
+            handleLogin(event)
+        }
+    };
     
     
-
+    
     
     return (
         <div className={cx("bodic")}>
-            <Form className={cx("wrap")} id="login-form" onSubmit={handleLogin} >
+            <Form className={cx("wrap")} id="login-form" onSubmit={handleLogin} onKeyDown={handleKeyDown}>
                 <h1>Đăng nhập</h1>
                 <Form.Group className={cx("input-box")}>
                     <Form.Control 
